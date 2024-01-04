@@ -1,0 +1,107 @@
+---
+---
+<script>
+    const $ = (selector: string) => document.querySelector(selector) as HTMLElement;
+    let isModalOpen: boolean = false;
+
+    const switchButton = $('#switch');
+    const modal = $('#modal');
+    const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+
+    if (switchButton) {
+        switchButton.addEventListener('click', () => {
+            if (modal) {
+                if (isModalOpen) {
+                    modal.style.display = 'none';
+                    isModalOpen = false;
+                } else {
+                    modal.style.display = 'block';
+                    isModalOpen = true;
+                }
+            }
+        });
+    }
+
+    const lightButton = $('#light');
+    if (lightButton) {
+        lightButton.addEventListener('click', () => {
+            setTheme('light');
+        });
+    }
+
+    const darkButton = $('#dark');
+    if (darkButton) {
+        darkButton.addEventListener('click', () => {
+            setTheme('dark');
+        });
+    }
+
+    const systemButton = $('#system');
+    if (systemButton) {
+        systemButton.addEventListener('click', () => {
+            setTheme('system');
+        });
+    }
+
+    // Function to set the theme
+    function setTheme(theme: string) {
+        localStorage.setItem('theme', theme);
+        modal.style.display = 'none';
+        isModalOpen = false;
+
+        if (theme === 'dark' || (theme === 'system' && prefersDarkScheme.matches)) {
+            document.documentElement.classList.remove('light');
+            document.documentElement.classList.add('dark');
+            getIcon('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+            document.documentElement.classList.add('light');
+            getIcon('light');
+        }
+    }
+
+    // Listen for changes in the preferred color scheme
+    prefersDarkScheme.addEventListener('change', (e) => {
+        if (localStorage.getItem('theme') === 'system') {
+            setTheme(e.matches ? 'dark' : 'light');
+        }
+    });
+
+    function checkTheme() {
+        const theme = localStorage.getItem('theme');
+        if (theme === 'dark' || (theme === 'system' && prefersDarkScheme.matches)) {
+            document.documentElement.classList.remove('light');
+            document.documentElement.classList.add('dark');
+            getIcon('dark');
+
+        } else {
+            document.documentElement.classList.remove('dark');
+            document.documentElement.classList.add('light');
+            getIcon('light');
+        }
+    }
+
+    function getIcon(theme: string) {
+        if (theme === 'dark') {
+            switchButton.innerHTML = '<span class="text-[#FFFFFF] [&>svg]:size-[18px]"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" class="text-current" viewBox="0 0 22 22"><path stroke="currentColor" stroke-linejoin="round" stroke-width="2" d="M20.2 13.24c-.902.273-1.86.42-2.851.42-5.418 0-9.81-4.392-9.81-9.81 0-.991.147-1.948.42-2.85C3.932 2.221 1 5.963 1 10.39c0 5.417 4.392 9.81 9.81 9.81 4.427 0 8.169-2.933 9.39-6.96Z"/></svg></span>';
+            return;
+        } 
+        if (theme === 'light') {
+            switchButton.innerHTML = '<span class="text-[#CA8A04] [&>svg]:size-[18px]"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" class="text-current" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M12 3.062V2.4m0 19.2v-.662M20.938 12h.662M2.4 12h.662m15.259-6.32.468-.468M5.21 18.788l.468-.468m12.642 0 .468.468M5.21 5.212l.468.468m11.605 6.284a5.297 5.297 0 1 1-10.594 0 5.297 5.297 0 0 1 10.594 0Z"/></svg></span>';
+            return;
+        }
+    }
+
+    checkTheme();
+</script>
+
+<div class="relative w-36">
+    <button id="switch">
+    </button>
+
+    <ul id="modal" class="absolute z-50 top-full right-0 bg-white rounded-lg ring-1 ring-slate-900/10 shadow-lg overflow-hidden w-36 py-1 text-sm font-semibold dark:bg-black dark:ring-0 dark:highlight-white/5 mt-4" style="display: none;">
+        <li class="hover:bg-slate-100 dark:hover:bg-zinc-900"><button id="light" class="w-full px-4 py-2 text-left" aria-label="light mode">Light</button></li>
+        <li class="hover:bg-slate-100 dark:hover:bg-zinc-900"><button id="dark" class="w-full px-4 py-2 text-left" aria-label="dark mode">Dark</button></li>
+        <li class="hover:bg-slate-100 dark:hover:bg-zinc-900"><button id="system" class="w-full px-4 py-2 text-left" aria-label="system mode">System</button></li>
+    </ul>
+</div>
