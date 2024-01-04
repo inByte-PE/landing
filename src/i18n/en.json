@@ -1,0 +1,30 @@
+{
+    "SEO_TITLE": "inByte - Custom Software Development",
+    "SEO_DESCRIPTION": "At inByte, we specialize in custom software development for businesses. Our team of professionals is dedicated to analyzing, designing, and developing technological solutions for your business.",
+    "NAVIGATION": [
+        {
+            "TITLE": "Home",
+            "HREF": "/"
+        },
+        {
+            "TITLE": "About Us",
+            "HREF": "/about-us"
+        },
+        {
+            "TITLE": "Services",
+            "HREF": "/services"
+        },
+        {
+            "TITLE": "Projects",
+            "HREF": "/projects"
+        },
+        {
+            "TITLE": "Contact",
+            "HREF": "/contact"
+        }
+    ],
+    "HOME_PAGE_TITLE": "We <strong>create</strong> the<br> <strong>software</strong> you need",
+    "HOME_PAGE_SUBTITLE": "In love with the problem and not the solution",
+    "EMAIL_INPUT_PLACEHOLDER": "Email address",
+    "EMAIL_BUTTON_TEXT": "Contact"
+}
