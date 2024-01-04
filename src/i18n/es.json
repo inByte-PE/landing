@@ -1,0 +1,30 @@
+{
+    "SEO_TITLE": "inByte - Desarrollo de software a medida",
+    "SEO_DESCRIPTION": "En inByte desarrollamos software a medida para empresas. Nuestro equipo de profesionales se encarga de analizar, diseñar y desarrollar soluciones tecnológicas para tu negocio.",
+    "NAVIGATION": [
+        {
+            "TITLE": "Inicio",
+            "HREF": "/"
+        },
+        {
+            "TITLE": "Sobre Nosotros",
+            "HREF": "/sobre-nosotros"
+        },
+        {
+            "TITLE": "Servicios",
+            "HREF": "/servicios"
+        },
+        {
+            "TITLE": "Proyectos",
+            "HREF": "/proyectos"
+        },
+        {
+            "TITLE": "Contacto",
+            "HREF": "/contacto"
+        }
+    ],
+    "HOME_PAGE_TITLE": "Nosotros <strong>creamos</strong> el<br> <strong>software</strong> que necesitas",
+    "HOME_PAGE_SUBTITLE": "Enamorados del problema y no de la solución",
+    "EMAIL_INPUT_PLACEHOLDER": "Correo electrónico",
+    "EMAIL_BUTTON_TEXT": "Contactar"
+}
